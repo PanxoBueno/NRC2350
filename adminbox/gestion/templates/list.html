@@ -1,0 +1,14 @@
+{% extends 'gestion/base.html' %}
+{% block content %}
+<div class="card bg-dark border-light">
+    <div class="card-header bg-cf-gray">
+        <h2>Entrenadores</h2>
+    </div>
+    <div class="card-body">
+        <a href="{% url 'entrenador_create' %}" class="btn btn-cf mb-3">+ Nuevo</a>
+        <table class="table table-dark table-hover">
+            <!-- Tabla con datos -->
+        </table>
+    </div>
+</div>
+{% endblock %}
