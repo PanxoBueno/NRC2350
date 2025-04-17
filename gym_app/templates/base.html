@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMINBOX</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--<link rel="stylesheet" href="{% static './css/style.css' %}"> -->
+</head>
+<body style="background-color: #f8f9fa;">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #dc3545;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'menu' %}">ADMINBOX, desafía tus límites.</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'crear_atleta' %}">Crear Atleta</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'crear_entrenador' %}">Crear Entrenador</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'biblioteca' %}">Biblioteca de Ejercicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'crear_biblioteca' %}">Agregar Ejercicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'listar_clases' %}">Clases</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'crear_reserva' %}">Reservar Clase</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'ver_reservas' %}">Ver Reservas</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Cerrar</a>
+                    </li>
+                    <li class="nav-item">{{ user.username}}</li>
+                    {% endif %}
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+ 
+    <!-- Bootstrap 5 JS Bundle (incluye Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

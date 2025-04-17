@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1 class="mb-4" style="color: #dc3545;">Menú del Box CrossFit</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Atletas</h2>
+      <a class="btn btn-success mb-2" href="{% url 'crear_atleta' %}">Agregar Atleta</a>
+      <ul class="list-group">
+        {% for atleta in atletas %}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ atleta.nombre }} {{ atleta.apellido }}   
+            <div>
+              <a href="{% url 'modificar_atleta' atleta.pk %}" class="btn btn-sm btn-warning">Modificar</a>
+              <a href="{% url 'borrar_atleta' atleta.pk %}" class="btn btn-sm btn-danger">Borrar</a>
+            </div>
+          </li>
+        {% empty %}
+          <li class="list-group-item">No hay atletas registrados.</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <h2>Entrenadores</h2>
+      <a class="btn btn-success mb-2" href="{% url 'crear_entrenador' %}">Agregar Entrenador</a>
+      <ul class="list-group">
+        {% for entrenador in entrenadores %}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ entrenador.nombre }} {{entrenador.apellido}}
+            <div>
+            <a href="{% url 'modificar_entrenador' entrenador.pk %}" class="btn btn-sm btn-warning">Modificar</a>
+            <a href="{% url 'borrar_entrenador' entrenador.pk %}" class="btn btn-sm btn-danger">Borrar</a>
+            </div>
+          </li>
+        {% empty %}
+          <li class="list-group-item">No hay entrenadores registrados.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endblock %}

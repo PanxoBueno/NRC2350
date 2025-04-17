@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4" style="color: #dc3545;">Agregar Ejercicio</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+            <label for="{{ form.nombre.id_for_label }}" class="form-label">Nombre</label>
+            {{ form.nombre }}
+            {% if form.nombre.errors %}
+                <div class="text-danger">{{ form.nombre.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="mb-3">
+            <label for="{{ form.descripcion.id_for_label }}" class="form-label">Descripción</label>
+            {{ form.descripcion }}
+            {% if form.descripcion.errors %}
+                <div class="text-danger">{{ form.descripcion.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="mb-3">
+            <label for="{{ form.imagen.id_for_label }}" class="form-label">Imagen del Ejercicio</label>
+            {{ form.imagen }}
+            {% if form.imagen.errors %}
+                <div class="text-danger">{{ form.imagen.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Guardar Ejercicio</button>
+        <a href="{% url 'menu' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}
