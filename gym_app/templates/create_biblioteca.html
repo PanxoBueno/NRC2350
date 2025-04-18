@@ -2,6 +2,14 @@
 {% block content %}
 <div class="container mt-4">
     <h2 class="mb-4" style="color: #dc3545;">Agregar Ejercicio</h2>
+    {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-success alert-dismissible fade show">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import AtletaForm, EntrenadorForm, BibliotecaForm, ClaseForm, ReservaForm
 from .models import Atleta, Entrenador, Biblioteca, Clase, Reserva
+from django.contrib import messages
 
 def home(request):
     biblioteca = Biblioteca.objects.all()
@@ -20,7 +21,8 @@ def crear_atleta(request):
         form = AtletaForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('menu')
+            messages.success(request, 'Atleta registrado con éxito.')
+            return redirect('crear_atleta')
     else:
         form = AtletaForm()
     return render(request, 'create_atleta.html', {'form': form})
@@ -48,7 +50,8 @@ def crear_entrenador(request):
         form = EntrenadorForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('menu')
+            messages.success(request, 'Entrenador registrado con éxito.')
+            return redirect('crear_entrenador')
     else:
         form = EntrenadorForm()
     return render(request, 'create_entrenador.html', {'form': form})
@@ -76,7 +79,8 @@ def crear_biblioteca(request):
         form = BibliotecaForm(request.POST, request.FILES)  # Importante incluir request.FILES
         if form.is_valid():
             form.save()
-            return redirect('menu')  # Redirige a donde necesites
+            messages.success(request, 'Ejercicio registrado con éxito.')
+            return redirect('crear_biblioteca')  
     else:
         form = BibliotecaForm()
     
@@ -88,7 +92,8 @@ def crear_clase(request):
         form = ClaseForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('menu')
+            messages.success(request, 'Clase registrada con éxito.')
+            return redirect('crear_clase')
     else:
         form = ClaseForm()
     return render(request, 'create_clase.html', {'form': form})
@@ -108,7 +113,8 @@ def crear_reserva(request):
                 form.add_error('clase', 'Esta clase ha alcanzado su capacidad máxima')
             else:
                 form.save()
-                return redirect('ver_reservas')
+                messages.success(request, 'Clase reservada con éxito.')
+                return redirect('crear_reserva')
     else:
         form = ReservaForm()
     return render(request, 'create_reserva.html', {'form': form})
